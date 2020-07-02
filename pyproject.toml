@@ -2,8 +2,6 @@
 requires = ["wheel",
             "setuptools >= 30.3.0",
             "setuptools_scm",
-            "bump2version",
-            "twine",
             "cmake >= 3.12"]
 
 [tool.tox]
