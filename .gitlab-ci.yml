@@ -1,0 +1,48 @@
+image: "python:3.7-buster"
+stages:
+  - build
+  - publish
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  GIT_SUBMODULE_STRATEGY: recursive
+
+cache:
+  key: $CI_PROJECT_NAME
+  paths:
+    - build/
+    - .cache/pip
+    - venv/
+
+before_script:
+  - python -V # Print out python version for debugging
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+  - pip install git+git://github.com/aws/aws-cli.git#2.0.28
+  - aws codeartifact login --region us-west-2 --tool pip --repository python-dev --domain dev --domain-owner 207285235248
+  - aws codeartifact login --region us-west-2 --tool twine --repository python-dev --domain dev --domain-owner 207285235248
+
+build:
+  stage: build
+  script:
+    - pwd
+    - python setup.py install
+
+publish:sdist:tag:
+  stage: publish
+  script:
+    - pip install -U twine
+    - python setup.py sdist
+    - twine upload --repository codeartifact dist/*
+  rules:
+    - if: '$CI_COMMIT_TAG != null'
+
+publish:bdist_wheel:tag:
+  stage: publish
+  script:
+    - pip install -U twine
+    - python setup.py bdist_wheel
+    - twine upload --repository codeartifact dist/*
+  rules:
+    - if: '$CI_COMMIT_TAG != null'

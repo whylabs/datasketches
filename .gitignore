@@ -6,6 +6,9 @@
 # Visual Studio Code
 .vscode/
 
+# Idea
+.idea
+
 # OSX files
 .DS_Store
 
@@ -15,7 +18,6 @@
 *.so
 *.dll
 *.dylib
-bin/
 build/
 lib/
 Default/
@@ -36,8 +38,6 @@ python/datasketches.egg-info/
 local/
 tmp/
 _site/
-_*
-_*/
 
 # exceptions
 !__init__.py

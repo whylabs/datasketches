@@ -1,0 +1,4 @@
+#!/bin/sh
+
+pip install -U bump2version
+bump2version $@
