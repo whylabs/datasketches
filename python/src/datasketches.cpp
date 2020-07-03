@@ -35,4 +35,10 @@ PYBIND11_MODULE(datasketches, m) {
   init_cpc(m);
   init_theta(m);
   init_vo(m);
+
+#ifdef VERSION_INFO
+m.attr("__version__") = VERSION_INFO;
+#else
+m.attr("__version__") = "dev";
+#endif
 }
