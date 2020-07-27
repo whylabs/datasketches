@@ -104,7 +104,7 @@ class CMakeBuild(build_ext):
         print() # add an empty line to pretty print
 
 setup(
-    name='datasketches',
+    name='whylabs-datasketches',
     #use_scm_version=True,
     version=version,
     author='Datasketches Developers',
@@ -119,5 +119,6 @@ setup(
     ext_modules=[CMakeExtension('datasketches')],
     cmdclass={'build_ext': CMakeBuild},
     setup_requires=['setuptools_scm','tox-setuptools'],
+    python_requires='>=3.5',
     zip_safe=False
 )
