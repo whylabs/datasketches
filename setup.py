@@ -41,7 +41,7 @@ def get_version(rel_path):
         if line.startswith('__version__'):
             delimiter = '"' if '"' in line else "'"
             v = line.split(delimiter)[1]
-            print(f'WhyLogs version: {v}')
+            print('WhyLogs version:', v)
             return v
     else:
         raise RuntimeError("Unable to find version string.")
@@ -116,7 +116,7 @@ setup(
     packages=find_packages('python'), # python pacakges only in this dir
     package_dir={'':'python'},
     # may need to add all source paths for sdist packages w/o MANIFEST.in
-    ext_modules=[CMakeExtension('datasketches')],
+    ext_modules=[CMakeExtension('whylabs-datasketches')],
     cmdclass={'build_ext': CMakeBuild},
     setup_requires=['setuptools_scm','tox-setuptools'],
     python_requires='>=3.5',
