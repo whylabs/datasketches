@@ -27,6 +27,7 @@ build:
   stage: build
   script:
     - pwd
+    - pip install -U cmake
     - python setup.py install
 
 publish:sdist:tag:
@@ -42,6 +43,7 @@ publish:bdist_wheel:tag:
   stage: publish
   script:
     - pip install -U twine
+    - pip install -U cmake
     - python setup.py bdist_wheel
     - twine upload --repository codeartifact dist/*
   rules:
