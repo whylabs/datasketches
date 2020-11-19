@@ -115,7 +115,7 @@ setup(
     license='Apache License 2.0',
     url='http://datasketches.apache.org',
     long_description=open('python/README.md').read(),
-    packages=find_packages('python'), # python pacakges only in this dir
+    # packages=find_packages('python'), #  we don't have python code to distribute
     package_dir={'':'python'},
     # may need to add all source paths for sdist packages w/o MANIFEST.in
     ext_modules=[CMakeExtension('whylabs-datasketches')],
